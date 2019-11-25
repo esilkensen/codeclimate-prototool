@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/json"
 	"fmt"
 	"github.com/codeclimate/cc-engine-go/engine"
 	"os"
@@ -10,6 +12,11 @@ import (
 	"strconv"
 	"strings"
 )
+
+type IssueWithFingerprint struct {
+	engine.Issue
+	Fingerprint string `json:"fingerprint"`
+}
 
 func main() {
 	rootPath := "/code/"
@@ -67,15 +74,36 @@ func parseIssue(output string) {
 		}
 
 		issue := &engine.Issue{
-			Type:        "issue",
-			Check:       "prototool lint",
-			Description: description,
-			Categories:  []string{"Style"},
-			Location:    location,
+			Type:              "issue",
+			Check:             "prototool lint",
+			Description:       description,
+			RemediationPoints: 50000,
+			Categories:        []string{"Style"},
+			Location:          location,
 		}
 
-		engine.PrintIssue(issue)
+		outputSum := md5.Sum([]byte(output))
+		fingerprint := fmt.Sprintf("%x", string(outputSum[:]))
+
+		issueWithFingerprint := &IssueWithFingerprint{
+			Issue:       *issue,
+			Fingerprint: fingerprint,
+		}
+
+		printIssue(issueWithFingerprint)
 	}
+}
+
+func printIssue(issue *IssueWithFingerprint) (err error) {
+	jsonOutput, err := json.Marshal(issue)
+	if err != nil {
+		return err
+	}
+
+	jsonOutput = append(jsonOutput, 0)
+	os.Stdout.Write(jsonOutput)
+
+	return nil
 }
 
 func protoFileWalk(rootPath string, includePaths []string) (fileList []string, err error) {
