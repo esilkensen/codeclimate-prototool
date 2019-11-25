@@ -1,0 +1,3 @@
+engines:
+  prototool-lint:
+    enabled: true

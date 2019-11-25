@@ -1,0 +1,13 @@
+{
+  "name": "prototool-lint",
+  "description": "prototool lint lints your Protobuf files.",
+  "maintainer": {
+    "name": "Erik Silkensen",
+    "email": "eriksilkensen@gmail.com"
+  },
+  "languages": [
+    "Protocol Buffer"
+  ],
+  "version": "1.0.0",
+  "spec_version": "0.3.1"
+}
