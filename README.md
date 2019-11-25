@@ -1,9 +1,9 @@
 # Code Climate Prototool Lint Engine
 
-[![Build Status][badge]][workflow]
+[![Build Status][badge]][repo]
 
 [badge]: https://github.com/esilkensen/codeclimate-prototool-lint/workflows/build/badge.svg
-[workflow]: https://github.com/esilkensen/codeclimate-prototool-lint/actions?query=workflow%3Abuild
+[repo]: https://github.com/esilkensen/codeclimate-prototool-lint
 
 `codeclimate-prototool-lint` is a Code Climate engine that wraps
 [prototool lint](https://github.com/uber/prototool#prototool-lint). You can run it on your command line using the Code
