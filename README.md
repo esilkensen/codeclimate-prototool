@@ -18,7 +18,9 @@ a particular version of `protoc`. As a result, the Prototool `protoc.version` co
 2. Add the following to yout Code Climate config:
 
 ```yaml
-engines:
+version: "2"
+
+plugins:
   prototool-lint:
     enabled: true
 ```

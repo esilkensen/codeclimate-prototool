@@ -1,3 +1,5 @@
-engines:
+version: "2"
+
+plugins:
   prototool-lint:
     enabled: true
