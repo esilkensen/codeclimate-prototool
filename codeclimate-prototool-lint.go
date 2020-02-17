@@ -33,9 +33,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Fprintf(os.Stderr, "Processing %d proto files\n", len(analysisFiles))
 	for _, path := range analysisFiles {
+		fmt.Fprintf(os.Stderr, "Processing proto file: %s\n", path)
 		analyzeFile(path)
 	}
+	fmt.Fprintf(os.Stderr, "Processed %d proto files\n", len(analysisFiles))
 }
 
 func analyzeFile(path string) {
